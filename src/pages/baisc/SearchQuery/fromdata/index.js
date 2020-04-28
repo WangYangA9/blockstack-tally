@@ -31,24 +31,15 @@ class Formdata extends Component {
   render() {
     
     const onFinish = values => {
-      this.props.handleSubmit(values)
+      this.props.searchhanld(values.bill.item)
      // console.log(values);
       this.formRef.current.resetFields(); 
     };
 
     return (
       <Form {...layout} ref={this.formRef} name="nest-messages" onFinish={onFinish} >
-        <Form.Item
-          name={['bill', 'date']}
-          label="日期"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        
+       
         <Form.Item
           name={['bill', 'item']}
           label="项目"
@@ -60,36 +51,10 @@ class Formdata extends Component {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name={['bill', 'type']}
-          label="类别"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item name={['bill', 'amount']} label="金额"rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item name={['bill', 'card']} label="账户"rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+       
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+           搜索项目
         </Button>
         </Form.Item>
       </Form>

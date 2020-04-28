@@ -1,58 +1,71 @@
-
-import React from "react";
-import {
-  G2,
-  Chart,
-  Geom,
-  Axis,
-  Tooltip,
-  Coord,
-  Label,
-  Legend,
-  View,
-  Guide,
-  Shape,
-  Facet,
-  Util,
-} from "bizcharts";
+import React, { Component } from 'react';
+import ReactEcharts from 'echarts-for-react';
+//import echarts from 'echarts/lib/echarts'
 
 
-  
-const Piechartdata=()=> {
-  
+
+class Piechartdata extends Component {
+
+getOption = () =>{
+    const chartdata=this.props.chartdata
+   // let coin=[];
+    //let valuedata=[];
+   
+    /* if(testdata.length>0){
+    for(let i=0;i<testdata.length;i++){
+        let arr={
+            name:testdata[i].coin,
+            value:testdata[i].valuedata
+        }
+        coin.push(testdata[i].coin)
+
+        valuedata.push(arr)
+    }
+}
+console.log(JSON.stringify(coin));
+console.log(JSON.stringify(valuedata)); */
+let option = {
+   /*  title : {
+        text: '仓位',
+        subtext: '图示',
+        x:'center'
+    }, */
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    /* legend: {
+        orient: 'vertical',
+        left: 'left',
+        data:chartdata.namedata,
+    }, */
+    series : [
+        {
+            name: '分布',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data: chartdata.valuedata,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+}
+    return option;
+}
+render(){
     return (
-      <Chart
-       width={ 240 }
-        height={ 240 }
-        data={[
-          { name: 'Chrome', value: 24.03 },
-          { name: 'Firefox', value: 10.38 },
-          { name: 'Safari', value: 4.77 },
-          { name: 'Opera', value: 0.91 },
-          { name: 'Unknown', value: 0.2 },
-        ]}
-       // forceFit
-        onIntervalClick={ev => {
-          const data = ev.data;
-          if (data) {
-            const name = data._origin['name'];
-            window.open('http://www.baidu.com/s?wd=' + name);
-          }
-        }}
-      >
-        <Coord type="theta" />
-        <Tooltip showTitle={false} />
-        <Geom
-          type="intervalStack"
-          position="value"
-          color="name"
-        >
-          <Label content="name" />
-        </Geom>
-      </Chart>
-    );
-  }
+      //  <div style={ {width:240, Height:240} }>
+        <ReactEcharts option={this.getOption()}/>
+     //   </div>
+    )
+}
 
-      
-  
-  export default Piechartdata
+}
+
+export default Piechartdata;
