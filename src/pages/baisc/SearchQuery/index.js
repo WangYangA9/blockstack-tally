@@ -4,7 +4,8 @@ import { Row, Col,Card } from "antd";
 import Fromdata from "./fromdata";
 import Tabledata from "./tabledata";
 import Chartdata from "./chartdata";
-
+import FetchDownloadCsv from "./filedownload"
+import FetchDownloadJson from "./filedownloadjson"
 
 
 export default class Setcategory extends Component {
@@ -29,6 +30,9 @@ export default class Setcategory extends Component {
                         </Row>
                     </>
                 </div>
+                {/* TODO 传入内容*/}
+                <FetchDownloadCsv content={'流水账单'}></FetchDownloadCsv>
+                <FetchDownloadJson content={'流水账单'}></FetchDownloadJson>
             </div>
 
         );
